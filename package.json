@@ -2,7 +2,7 @@
   "name": "react-js-spatial-navigation",
   "version": "0.0.5",
   "description": "A wrapper of js-spatial-navigation to react components",
-  "main": "dist/main.js",
+  "main": "build/index.js",
   "bugs": {
     "url": "https://github.com/dead/react-js-spatial-navigation/issues"
   },

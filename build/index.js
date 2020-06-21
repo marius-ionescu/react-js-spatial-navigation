@@ -453,13 +453,13 @@ module.exports = warning;
 
 "use strict";
 /*
-* A javascript-based implementation of Spatial Navigation.
-*
-* Copyright (c) 2017 Luke Chang.
-* https://github.com/luke-chang/js-spatial-navigation
-*
-* Licensed under the MPL 2.0.
-*/
+ * A javascript-based implementation of Spatial Navigation.
+ *
+ * Copyright (c) 2017 Luke Chang.
+ * https://github.com/luke-chang/js-spatial-navigation
+ *
+ * Licensed under the MPL 2.0.
+ */
 
 
 
@@ -480,17 +480,17 @@ Object.defineProperty(exports, "__esModule", {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var GlobalConfig = {
-  selector: '', // can be a valid <extSelector> except "@" syntax.
+  selector: "", // can be a valid <extSelector> except "@" syntax.
   straightOnly: false,
   straightOverlapThreshold: 0.5,
   rememberSource: false,
   disabled: false,
-  defaultElement: '', // <extSelector> except "@" syntax.
-  enterTo: '', // '', 'last-focused', 'default-element'
+  defaultElement: "", // <extSelector> except "@" syntax.
+  enterTo: "", // '', 'last-focused', 'default-element'
   leaveFor: null, // {left: <extSelector>, right: <extSelector>,
   //  up: <extSelector>, down: <extSelector>}
-  restrict: 'self-first', // 'self-first', 'self-only', 'none'
-  tabIndexIgnoreList: 'a, input, select, textarea, button, iframe, [contentEditable=true]',
+  restrict: "self-first", // 'self-first', 'self-only', 'none'
+  tabIndexIgnoreList: "a, input, select, textarea, button, iframe, [contentEditable=true]",
   navigableFilter: null
 };
 
@@ -498,21 +498,21 @@ var GlobalConfig = {
 /* Constant Variable */
 /*********************/
 var KEYMAPPING = {
-  '37': 'left',
-  '38': 'up',
-  '39': 'right',
-  '40': 'down'
+  "37": "left",
+  "38": "up",
+  "39": "right",
+  "40": "down"
 };
 
 var REVERSE = {
-  'left': 'right',
-  'up': 'down',
-  'right': 'left',
-  'down': 'up'
+  left: "right",
+  up: "down",
+  right: "left",
+  down: "up"
 };
 
-var EVENT_PREFIX = 'sn:';
-var ID_POOL_PREFIX = 'section-';
+var EVENT_PREFIX = "sn:";
+var ID_POOL_PREFIX = "section-";
 
 /********************/
 /* Private Variable */
@@ -522,8 +522,8 @@ var _ready = false;
 var _pause = false;
 var _sections = {};
 var _sectionCount = 0;
-var _defaultSectionId = '';
-var _lastSectionId = '';
+var _defaultSectionId = "";
+var _lastSectionId = "";
 var _duringFocusChange = false;
 
 /************/
@@ -535,7 +535,7 @@ var elementMatchesFuncSelector = function elementMatchesFuncSelector(selector) {
   return [].slice.call(matchedNodes).indexOf(this) >= 0;
 };
 
-if (typeof Element !== 'undefined') {
+if (typeof Element !== "undefined") {
   elementMatchesSelector = Element.prototype.matches || Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || elementMatchesFuncSelector;
 } else {
   elementMatchesSelector = elementMatchesFuncSelector;
@@ -743,7 +743,7 @@ function navigate(target, direction, candidates, config) {
   var priorities;
 
   switch (direction) {
-    case 'left':
+    case "left":
       priorities = [{
         group: internalGroups[0].concat(internalGroups[3]).concat(internalGroups[6]),
         distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
@@ -755,7 +755,7 @@ function navigate(target, direction, candidates, config) {
         distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.rightIsBetter, distanceFunction.nearTargetTopIsBetter]
       }];
       break;
-    case 'right':
+    case "right":
       priorities = [{
         group: internalGroups[2].concat(internalGroups[5]).concat(internalGroups[8]),
         distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.topIsBetter]
@@ -767,7 +767,7 @@ function navigate(target, direction, candidates, config) {
         distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter, distanceFunction.nearTargetTopIsBetter]
       }];
       break;
-    case 'up':
+    case "up":
       priorities = [{
         group: internalGroups[0].concat(internalGroups[1]).concat(internalGroups[2]),
         distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
@@ -779,7 +779,7 @@ function navigate(target, direction, candidates, config) {
         distance: [distanceFunction.nearPlumbLineIsBetter, distanceFunction.bottomIsBetter, distanceFunction.nearTargetLeftIsBetter]
       }];
       break;
-    case 'down':
+    case "down":
       priorities = [{
         group: internalGroups[6].concat(internalGroups[7]).concat(internalGroups[8]),
         distance: [distanceFunction.nearHorizonIsBetter, distanceFunction.leftIsBetter]
@@ -837,11 +837,11 @@ function generateId() {
 
 function parseSelector(selector) {
   var result;
-  if (typeof selector === 'string') {
+  if (typeof selector === "string") {
     result = [].slice.call(document.querySelectorAll(selector));
-  } else if ((typeof selector === 'undefined' ? 'undefined' : _typeof(selector)) === 'object' && selector.length) {
+  } else if ((typeof selector === "undefined" ? "undefined" : _typeof(selector)) === "object" && selector.length) {
     result = [].slice.call(selector);
-  } else if ((typeof selector === 'undefined' ? 'undefined' : _typeof(selector)) === 'object' && selector.nodeType === 1) {
+  } else if ((typeof selector === "undefined" ? "undefined" : _typeof(selector)) === "object" && selector.nodeType === 1) {
     result = [selector];
   } else {
     result = [];
@@ -850,11 +850,11 @@ function parseSelector(selector) {
 }
 
 function matchSelector(elem, selector) {
-  if (typeof selector === 'string') {
+  if (typeof selector === "string") {
     return elementMatchesSelector.call(elem, selector);
-  } else if ((typeof selector === 'undefined' ? 'undefined' : _typeof(selector)) === 'object' && selector.length) {
+  } else if ((typeof selector === "undefined" ? "undefined" : _typeof(selector)) === "object" && selector.length) {
     return selector.indexOf(elem) >= 0;
-  } else if ((typeof selector === 'undefined' ? 'undefined' : _typeof(selector)) === 'object' && selector.nodeType === 1) {
+  } else if ((typeof selector === "undefined" ? "undefined" : _typeof(selector)) === "object" && selector.nodeType === 1) {
     return elem === selector;
   }
   return false;
@@ -899,17 +899,17 @@ function isNavigable(elem, sectionId, verifySectionSelector) {
   if (!elem || !sectionId || !_sections[sectionId] || _sections[sectionId].disabled) {
     return false;
   }
-  if (elem.offsetWidth <= 0 && elem.offsetHeight <= 0 || elem.hasAttribute('disabled')) {
+  if (elem.offsetWidth <= 0 && elem.offsetHeight <= 0 || elem.hasAttribute("disabled")) {
     return false;
   }
   if (verifySectionSelector && !matchSelector(elem, _sections[sectionId].selector)) {
     return false;
   }
-  if (typeof _sections[sectionId].navigableFilter === 'function') {
+  if (typeof _sections[sectionId].navigableFilter === "function") {
     if (_sections[sectionId].navigableFilter(elem, sectionId) === false) {
       return false;
     }
-  } else if (typeof GlobalConfig.navigableFilter === 'function') {
+  } else if (typeof GlobalConfig.navigableFilter === "function") {
     if (GlobalConfig.navigableFilter(elem, sectionId) === false) {
       return false;
     }
@@ -936,7 +936,7 @@ function getSectionDefaultElement(sectionId) {
   if (!defaultElement) {
     return null;
   }
-  if (typeof defaultElement === 'string') {
+  if (typeof defaultElement === "string") {
     defaultElement = parseSelector(defaultElement)[0];
   }
   if (isNavigable(defaultElement, sectionId, true)) {
@@ -946,7 +946,7 @@ function getSectionDefaultElement(sectionId) {
 }
 
 function getSectionLastFocusedElement(sectionId) {
-  var lastFocusedElement = _sections[sectionId].lastFocusedElement;
+  var lastFocusedElement = _sections[sectionId] && _sections[sectionId].lastFocusedElement;
   if (!isNavigable(lastFocusedElement, sectionId, true)) {
     return null;
   }
@@ -957,7 +957,7 @@ function fireEvent(elem, type, details, cancelable) {
   if (arguments.length < 4) {
     cancelable = true;
   }
-  var evt = document.createEvent('CustomEvent');
+  var evt = document.createEvent("CustomEvent");
   evt.initCustomEvent(EVENT_PREFIX + type, true, cancelable, details);
   return elem.dispatchEvent(evt);
 }
@@ -997,12 +997,12 @@ function focusElement(elem, sectionId, direction) {
       direction: direction,
       native: false
     };
-    if (!fireEvent(currentFocusedElement, 'willunfocus', unfocusProperties)) {
+    if (!fireEvent(currentFocusedElement, "willunfocus", unfocusProperties)) {
       _duringFocusChange = false;
       return false;
     }
     currentFocusedElement.blur();
-    fireEvent(currentFocusedElement, 'unfocused', unfocusProperties, false);
+    fireEvent(currentFocusedElement, "unfocused", unfocusProperties, false);
   }
 
   var focusProperties = {
@@ -1011,12 +1011,12 @@ function focusElement(elem, sectionId, direction) {
     direction: direction,
     native: false
   };
-  if (!fireEvent(elem, 'willfocus', focusProperties)) {
+  if (!fireEvent(elem, "willfocus", focusProperties)) {
     _duringFocusChange = false;
     return false;
   }
   elem.focus();
-  fireEvent(elem, 'focused', focusProperties, false);
+  fireEvent(elem, "focused", focusProperties, false);
 
   _duringFocusChange = false;
 
@@ -1035,7 +1035,7 @@ function focusChanged(elem, sectionId) {
 }
 
 function focusExtendedSelector(selector, direction) {
-  if (selector.charAt(0) == '@') {
+  if (selector.charAt(0) == "@") {
     if (selector.length == 1) {
       return focusSection();
     } else {
@@ -1074,7 +1074,7 @@ function focusSection(sectionId) {
     var id = range[i];
     var next;
 
-    if (_sections[id].enterTo == 'last-focused') {
+    if (_sections[id].enterTo == "last-focused") {
       next = getSectionLastFocusedElement(id) || getSectionDefaultElement(id) || getSectionNavigableElements(id)[0];
     } else {
       next = getSectionDefaultElement(id) || getSectionLastFocusedElement(id) || getSectionNavigableElements(id)[0];
@@ -1089,7 +1089,7 @@ function focusSection(sectionId) {
 }
 
 function fireNavigatefailed(elem, direction) {
-  fireEvent(elem, 'navigatefailed', {
+  fireEvent(elem, "navigatefailed", {
     direction: direction
   }, false);
 }
@@ -1098,8 +1098,8 @@ function gotoLeaveFor(sectionId, direction) {
   if (_sections[sectionId].leaveFor && _sections[sectionId].leaveFor[direction] !== undefined) {
     var next = _sections[sectionId].leaveFor[direction];
 
-    if (typeof next === 'string') {
-      if (next === '') {
+    if (typeof next === "string") {
+      if (next === "") {
         return null;
       }
       return focusExtendedSelector(next, direction);
@@ -1114,9 +1114,9 @@ function gotoLeaveFor(sectionId, direction) {
 }
 
 function focusNext(direction, currentFocusedElement, currentSectionId) {
-  var extSelector = currentFocusedElement.getAttribute('data-sn-' + direction);
-  if (typeof extSelector === 'string') {
-    if (extSelector === '' || !focusExtendedSelector(extSelector, direction)) {
+  var extSelector = currentFocusedElement.getAttribute("data-sn-" + direction);
+  if (typeof extSelector === "string") {
+    if (extSelector === "" || !focusExtendedSelector(extSelector, direction)) {
       fireNavigatefailed(currentFocusedElement, direction);
       return false;
     }
@@ -1133,12 +1133,12 @@ function focusNext(direction, currentFocusedElement, currentSectionId) {
   var config = extend({}, GlobalConfig, _sections[currentSectionId]);
   var next;
 
-  if (config.restrict == 'self-only' || config.restrict == 'self-first') {
+  if (config.restrict == "self-only" || config.restrict == "self-first") {
     var currentSectionNavigableElements = sectionNavigableElements[currentSectionId];
 
     next = navigate(currentFocusedElement, direction, exclude(currentSectionNavigableElements, currentFocusedElement), config);
 
-    if (!next && config.restrict == 'self-first') {
+    if (!next && config.restrict == "self-first") {
       next = navigate(currentFocusedElement, direction, exclude(allNavigableElements, currentSectionNavigableElements), config);
     }
   } else {
@@ -1165,10 +1165,10 @@ function focusNext(direction, currentFocusedElement, currentSectionId) {
 
       var enterToElement;
       switch (_sections[nextSectionId].enterTo) {
-        case 'last-focused':
+        case "last-focused":
           enterToElement = getSectionLastFocusedElement(nextSectionId) || getSectionDefaultElement(nextSectionId);
           break;
-        case 'default-element':
+        case "default-element":
           enterToElement = getSectionDefaultElement(nextSectionId);
           break;
       }
@@ -1203,7 +1203,7 @@ function onKeyDown(evt) {
     if (evt.keyCode == 13) {
       currentFocusedElement = getCurrentFocusedElement();
       if (currentFocusedElement && getSectionId(currentFocusedElement)) {
-        if (!fireEvent(currentFocusedElement, 'enter-down')) {
+        if (!fireEvent(currentFocusedElement, "enter-down")) {
           return preventDefault();
         }
       }
@@ -1231,10 +1231,10 @@ function onKeyDown(evt) {
   var willmoveProperties = {
     direction: direction,
     sectionId: currentSectionId,
-    cause: 'keydown'
+    cause: "keydown"
   };
 
-  if (fireEvent(currentFocusedElement, 'willmove', willmoveProperties)) {
+  if (fireEvent(currentFocusedElement, "willmove", willmoveProperties)) {
     focusNext(direction, currentFocusedElement, currentSectionId);
   }
 
@@ -1248,7 +1248,7 @@ function onKeyUp(evt) {
   if (!_pause && _sectionCount && evt.keyCode == 13) {
     var currentFocusedElement = getCurrentFocusedElement();
     if (currentFocusedElement && getSectionId(currentFocusedElement)) {
-      if (!fireEvent(currentFocusedElement, 'enter-up')) {
+      if (!fireEvent(currentFocusedElement, "enter-up")) {
         evt.preventDefault();
         evt.stopPropagation();
       }
@@ -1271,12 +1271,12 @@ function onFocus(evt) {
         native: true
       };
 
-      if (!fireEvent(target, 'willfocus', focusProperties)) {
+      if (!fireEvent(target, "willfocus", focusProperties)) {
         _duringFocusChange = true;
         target.blur();
         _duringFocusChange = false;
       } else {
-        fireEvent(target, 'focused', focusProperties, false);
+        fireEvent(target, "focused", focusProperties, false);
         focusChanged(target, sectionId);
       }
     }
@@ -1289,14 +1289,14 @@ function onBlur(evt) {
     var unfocusProperties = {
       native: true
     };
-    if (!fireEvent(target, 'willunfocus', unfocusProperties)) {
+    if (!fireEvent(target, "willunfocus", unfocusProperties)) {
       _duringFocusChange = true;
       setTimeout(function () {
         target.focus();
         _duringFocusChange = false;
       });
     } else {
-      fireEvent(target, 'unfocused', unfocusProperties, false);
+      fireEvent(target, "unfocused", unfocusProperties, false);
     }
   }
 }
@@ -1311,19 +1311,19 @@ var JsSpatialNavigation = {
         GlobalConfig = config;
       }
 
-      window.addEventListener('keydown', onKeyDown);
-      window.addEventListener('keyup', onKeyUp);
-      window.addEventListener('focus', onFocus, true);
-      window.addEventListener('blur', onBlur, true);
+      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener("keyup", onKeyUp);
+      window.addEventListener("focus", onFocus, true);
+      window.addEventListener("blur", onBlur, true);
       _ready = true;
     }
   },
 
   uninit: function uninit() {
-    window.removeEventListener('blur', onBlur, true);
-    window.removeEventListener('focus', onFocus, true);
-    window.removeEventListener('keyup', onKeyUp);
-    window.removeEventListener('keydown', onKeyDown);
+    window.removeEventListener("blur", onBlur, true);
+    window.removeEventListener("focus", onFocus, true);
+    window.removeEventListener("keyup", onKeyUp);
+    window.removeEventListener("keydown", onKeyDown);
     this.clear();
     _idPool = 0;
     _ready = false;
@@ -1332,8 +1332,8 @@ var JsSpatialNavigation = {
   clear: function clear() {
     _sections = {};
     _sectionCount = 0;
-    _defaultSectionId = '';
-    _lastSectionId = '';
+    _defaultSectionId = "";
+    _lastSectionId = "";
     _duringFocusChange = false;
   },
 
@@ -1342,13 +1342,13 @@ var JsSpatialNavigation = {
   set: function set() {
     var sectionId, config;
 
-    if (_typeof(arguments[0]) === 'object') {
+    if (_typeof(arguments[0]) === "object") {
       config = arguments[0];
-    } else if (typeof arguments[0] === 'string' && _typeof(arguments[1]) === 'object') {
+    } else if (typeof arguments[0] === "string" && _typeof(arguments[1]) === "object") {
       sectionId = arguments[0];
       config = arguments[1];
       if (!_sections[sectionId]) {
-        throw new Error('Section "' + sectionId + '" doesn\'t exist!');
+        throw new Error('Section "' + sectionId + "\" doesn't exist!");
       }
     } else {
       return;
@@ -1376,15 +1376,15 @@ var JsSpatialNavigation = {
     var sectionId;
     var config = {};
 
-    if (_typeof(arguments[0]) === 'object') {
+    if (_typeof(arguments[0]) === "object") {
       config = arguments[0];
-    } else if (typeof arguments[0] === 'string' && _typeof(arguments[1]) === 'object') {
+    } else if (typeof arguments[0] === "string" && _typeof(arguments[1]) === "object") {
       sectionId = arguments[0];
       config = arguments[1];
     }
 
     if (!sectionId) {
-      sectionId = typeof config.id === 'string' ? config.id : generateId();
+      sectionId = typeof config.id === "string" ? config.id : generateId();
     }
 
     if (_sections[sectionId]) {
@@ -1400,7 +1400,7 @@ var JsSpatialNavigation = {
   },
 
   remove: function remove(sectionId) {
-    if (!sectionId || typeof sectionId !== 'string') {
+    if (!sectionId || typeof sectionId !== "string") {
       throw new Error('Please assign the "sectionId"!');
     }
     if (_sections[sectionId]) {
@@ -1443,7 +1443,7 @@ var JsSpatialNavigation = {
   focus: function focus(elem, silent) {
     var result = false;
 
-    if (silent === undefined && typeof elem === 'boolean') {
+    if (silent === undefined && typeof elem === "boolean") {
       silent = elem;
       elem = undefined;
     }
@@ -1457,7 +1457,7 @@ var JsSpatialNavigation = {
     if (!elem) {
       result = focusSection();
     } else {
-      if (typeof elem === 'string') {
+      if (typeof elem === "string") {
         if (_sections[elem]) {
           result = focusSection(elem);
         } else {
@@ -1499,10 +1499,10 @@ var JsSpatialNavigation = {
     var willmoveProperties = {
       direction: direction,
       sectionId: sectionId,
-      cause: 'api'
+      cause: "api"
     };
 
-    if (!fireEvent(elem, 'willmove', willmoveProperties)) {
+    if (!fireEvent(elem, "willmove", willmoveProperties)) {
       return false;
     }
 
@@ -1516,8 +1516,8 @@ var JsSpatialNavigation = {
       var tabIndexIgnoreList = section.tabIndexIgnoreList !== undefined ? section.tabIndexIgnoreList : GlobalConfig.tabIndexIgnoreList;
       parseSelector(section.selector).forEach(function (elem) {
         if (!matchSelector(elem, tabIndexIgnoreList)) {
-          if (!elem.getAttribute('tabindex')) {
-            elem.setAttribute('tabindex', '-1');
+          if (!elem.getAttribute("tabindex")) {
+            elem.setAttribute("tabindex", "-1");
           }
         }
       });
@@ -1527,7 +1527,7 @@ var JsSpatialNavigation = {
       if (_sections[sectionId]) {
         doMakeFocusable(_sections[sectionId]);
       } else {
-        throw new Error('Section "' + sectionId + '" doesn\'t exist!');
+        throw new Error('Section "' + sectionId + "\" doesn't exist!");
       }
     } else {
       for (var id in _sections) {
@@ -1538,9 +1538,9 @@ var JsSpatialNavigation = {
 
   setDefaultSection: function setDefaultSection(sectionId) {
     if (!sectionId) {
-      _defaultSectionId = '';
+      _defaultSectionId = "";
     } else if (!_sections[sectionId]) {
-      throw new Error('Section "' + sectionId + '" doesn\'t exist!');
+      throw new Error('Section "' + sectionId + "\" doesn't exist!");
     } else {
       _defaultSectionId = sectionId;
     }

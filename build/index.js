@@ -1627,17 +1627,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var defaultConfig = {
-  activeClassName: 'active',
-  focusableClassName: 'focusable',
-  selector: '.focusable'
+  activeClassName: "active",
+  focusableClassName: "focusable",
+  selector: ".focusable"
 };
 var config = {};
 
 /**
-* This component initialize the Spatial Navigation library.
-* It should be used only one time and in the root node of the application.
-* The spatial navigation only work within the Focusable components.
-*/
+ * This component initialize the Spatial Navigation library.
+ * It should be used only one time and in the root node of the application.
+ * The spatial navigation only work within the Focusable components.
+ */
 
 var SpatialNavigation = function (_Component) {
   _inherits(SpatialNavigation, _Component);
@@ -1649,89 +1649,89 @@ var SpatialNavigation = function (_Component) {
   }
 
   _createClass(SpatialNavigation, [{
-    key: 'getConfigFromProps',
+    key: "getConfigFromProps",
     value: function getConfigFromProps() {
       var propsConfig = {};
 
       // React Custom: Set activeClassName
-      if (typeof this.props.activeClassName === 'string') {
+      if (typeof this.props.activeClassName === "string") {
         propsConfig.activeClassName = this.props.activeClassName;
       }
 
       // React Custom: Set focusableClassName
-      if (typeof this.props.focusableClassName === 'string') {
+      if (typeof this.props.focusableClassName === "string") {
         propsConfig.focusableClassName = this.props.focusableClassName;
       }
 
       // React Custom: Set customInit
-      if (typeof this.props.customInit === 'function') {
+      if (typeof this.props.customInit === "function") {
         propsConfig.customInit = this.props.customInit;
       }
 
       // Set defaultElement
-      if (typeof this.props.defaultElement === 'string') {
+      if (typeof this.props.defaultElement === "string") {
         propsConfig.defaultElement = this.props.defaultElement;
       }
 
       // Set disabled
-      if (typeof this.props.disabled === 'boolean') {
+      if (typeof this.props.disabled === "boolean") {
         propsConfig.disabled = this.props.disabled;
       }
 
       // Set enterTo
-      if (typeof this.props.enterTo === 'string') {
+      if (typeof this.props.enterTo === "string") {
         propsConfig.enterTo = this.props.enterTo;
       }
 
       // Set leaveFor
-      if (_typeof(this.props.leaveFor) === 'object') {
+      if (_typeof(this.props.leaveFor) === "object") {
         propsConfig.leaveFor = this.props.leaveFor;
       }
 
       // Set navigableFilter
-      if (typeof this.props.navigableFilter === 'function') {
+      if (typeof this.props.navigableFilter === "function") {
         propsConfig.navigableFilter = this.props.navigableFilter;
       }
 
       // Set rememberSource
-      if (typeof this.props.rememberSource === 'string') {
+      if (typeof this.props.rememberSource === "string") {
         propsConfig.rememberSource = this.props.rememberSource;
       }
 
       // Set restrict
-      if (typeof this.props.restrict === 'string') {
+      if (typeof this.props.restrict === "string") {
         propsConfig.restrict = this.props.restrict;
       }
 
       // Set selector
-      if (typeof this.props.selector === 'string') {
+      if (typeof this.props.selector === "string") {
         propsConfig.selector = this.props.selector;
       }
 
       // Set straightOnly
-      if (typeof this.props.straightOnly === 'boolean') {
+      if (typeof this.props.straightOnly === "boolean") {
         propsConfig.straightOnly = this.props.straightOnly;
       }
 
       // Set straightOverlapThreshold
-      if (typeof this.props.straightOverlapThreshold === 'number') {
+      if (typeof this.props.straightOverlapThreshold === "number") {
         propsConfig.straightOverlapThreshold = this.props.straightOverlapThreshold;
       }
 
       // Set tabIndexIgnoreList
-      if (typeof this.props.tabIndexIgnoreList === 'string') {
+      if (typeof this.props.tabIndexIgnoreList === "string") {
         propsConfig.tabIndexIgnoreList = this.props.tabIndexIgnoreList;
       }
 
       return propsConfig;
     }
   }, {
-    key: 'componentWillMount',
+    key: "componentWillMount",
     value: function componentWillMount() {
       config = Object.assign(defaultConfig, this.getConfigFromProps.call(this));
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       if (!this.props.customInit) {
         _spatial_navigation2.default.init();
@@ -1742,15 +1742,15 @@ var SpatialNavigation = function (_Component) {
       }
     }
   }, {
-    key: 'componentWillUnmount',
+    key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _spatial_navigation2.default.uninit();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         this.props.children
       );
@@ -1761,22 +1761,22 @@ var SpatialNavigation = function (_Component) {
 }(_react.Component);
 
 function getSelector(id) {
-  return '.' + id;
+  return "." + id;
 }
 
 /**
-* A Focusable component that handle the onFocus, onUnfocus, onClickEnter events.
-*
-* Props:
-*   onFocus: (optional)
-*     A function that will be fired when the component is focused.
-*
-*   onUnfocus: (optional)
-*     A function that will be fired when the component is unfocused.
-*
-*   onClickEnter: (optional)
-*     A function that will be fired when the component is focused and enter key is pressed.
-*/
+ * A Focusable component that handle the onFocus, onUnfocus, onClickEnter events.
+ *
+ * Props:
+ *   onFocus: (optional)
+ *     A function that will be fired when the component is focused.
+ *
+ *   onUnfocus: (optional)
+ *     A function that will be fired when the component is unfocused.
+ *
+ *   onClickEnter: (optional)
+ *     A function that will be fired when the component is focused and enter key is pressed.
+ */
 
 var Focusable = function (_Component2) {
   _inherits(Focusable, _Component2);
@@ -1802,28 +1802,28 @@ var Focusable = function (_Component2) {
   }
 
   _createClass(Focusable, [{
-    key: 'componentFocused',
+    key: "componentFocused",
     value: function componentFocused(e) {
       if (this.props.onFocus) {
         this.props.onFocus(e);
       }
     }
   }, {
-    key: 'componentUnfocused',
+    key: "componentUnfocused",
     value: function componentUnfocused(e) {
       if (this.props.onUnfocus) {
         this.props.onUnfocus(e);
       }
     }
   }, {
-    key: 'componentClickEnter',
+    key: "componentClickEnter",
     value: function componentClickEnter(e) {
       if (this.props.onClickEnter) {
         this.props.onClickEnter(e);
       }
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       if (!this.el) return;
 
@@ -1832,16 +1832,18 @@ var Focusable = function (_Component2) {
       this.el.addEventListener("sn:enter-up", this._componentClickEnter);
     }
   }, {
-    key: 'componentWillUnmount',
+    key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.el.removeEventListener("sn:focused", this._componentFocused);
       this.el.removeEventListener("sn:unfocused", this._componentUnfocused);
       this.el.removeEventListener("sn:enter-up", this._componentClickEnter);
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _this3 = this;
+
+      var onKeyDown = this.props.onKeyDown;
 
       var classNames = [this.context.focusableSectionId ? this.context.focusableSectionId : config.focusableClassName];
 
@@ -1854,10 +1856,16 @@ var Focusable = function (_Component2) {
       }
 
       return _react2.default.createElement(
-        'div',
-        { className: classNames.join(" "), ref: function ref(e) {
+        "div",
+        {
+          className: classNames.join(" "),
+          ref: function ref(e) {
             return _this3.el = e;
-          }, tabIndex: '-1' },
+          },
+          tabIndex: "-1",
+          onKeyDown: onKeyDown,
+          role: "button"
+        },
         this.props.children
       );
     }
@@ -1871,25 +1879,25 @@ Focusable.contextTypes = {
 };
 
 /*
-* A Focusable Section can specify a behaviour before focusing an element.
-* I.e. selecting a default element, the first element or an active one.
-*
-* Props:
-*   defaultElement: (default: '')
-*     The default element that will be focused when entering this section.
-*     This can be:
-*       * a valid selector string for "querySelectorAll".
-*       * a NodeList or an array containing DOM elements.
-*       * a single DOM element.
-*       * an empty string.
-*
-*   enterTo: (default: 'default-element')
-*     If the focus comes from another section, you can define which element in this section should be focused first.
-*     This can be:
-*       * 'last-focused' indicates the last focused element before we left this section last time. If this section has never been focused yet, the default element (if any) will be chosen next.
-*       * 'default-element' indicates the element defined in defaultElement.
-*       * an empty string.
-*/
+ * A Focusable Section can specify a behaviour before focusing an element.
+ * I.e. selecting a default element, the first element or an active one.
+ *
+ * Props:
+ *   defaultElement: (default: '')
+ *     The default element that will be focused when entering this section.
+ *     This can be:
+ *       * a valid selector string for "querySelectorAll".
+ *       * a NodeList or an array containing DOM elements.
+ *       * a single DOM element.
+ *       * an empty string.
+ *
+ *   enterTo: (default: 'default-element')
+ *     If the focus comes from another section, you can define which element in this section should be focused first.
+ *     This can be:
+ *       * 'last-focused' indicates the last focused element before we left this section last time. If this section has never been focused yet, the default element (if any) will be chosen next.
+ *       * 'default-element' indicates the element defined in defaultElement.
+ *       * an empty string.
+ */
 
 var FocusableSection = function (_Component3) {
   _inherits(FocusableSection, _Component3);
@@ -1901,37 +1909,37 @@ var FocusableSection = function (_Component3) {
   }
 
   _createClass(FocusableSection, [{
-    key: 'getChildContext',
+    key: "getChildContext",
     value: function getChildContext() {
       return { focusableSectionId: this.sectionId };
     }
   }, {
-    key: 'componentWillMount',
+    key: "componentWillMount",
     value: function componentWillMount() {
       this.sectionId = _spatial_navigation2.default.add({});
     }
   }, {
-    key: 'componentWillUnmount',
+    key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _spatial_navigation2.default.remove(this.sectionId);
     }
   }, {
-    key: '_getSelector',
+    key: "_getSelector",
     value: function _getSelector() {
       return getSelector(this.sectionId);
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       var defaultElement = this.props.defaultElement;
-      var enterTo = this.props.enterTo === undefined ? 'default-element' : this.props.enterTo;
+      var enterTo = this.props.enterTo === undefined ? "default-element" : this.props.enterTo;
 
-      if (defaultElement && defaultElement === 'first') {
-        defaultElement = this._getSelector() + ':first-child';
+      if (defaultElement && defaultElement === "first") {
+        defaultElement = this._getSelector() + ":first-child";
       }
 
-      if (defaultElement && defaultElement === 'active') {
-        defaultElement = this._getSelector() + ('.' + config.activeClassName);
+      if (defaultElement && defaultElement === "active") {
+        defaultElement = this._getSelector() + ("." + config.activeClassName);
       }
 
       _spatial_navigation2.default.set(this.sectionId, {
@@ -1941,10 +1949,10 @@ var FocusableSection = function (_Component3) {
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         this.props.children
       );

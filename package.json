@@ -11,10 +11,12 @@
     "url": "git+https://github.com/marius-ionescu/react-js-spatial-navigation"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.13.1",
+    "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "react": "^15.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "smooth-scroll-into-view-if-needed": "^1.1.28",
     "webpack": "^2.6.1"
   },
   "scripts": {
@@ -28,12 +30,17 @@
     "url": "https://github.com/marius-ionescu"
   },
   "devDependencies": {
+    "react": "^16.13.1",
+    "prop-types": "^15.7.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
     "babel-preset-stage-0": "^6.0.15",
-    "babel-preset-env": "^1.5.1"
+    "eslint": "^7.6.0",
+    "eslint-plugin-react": "^7.20.5"
   }
 }

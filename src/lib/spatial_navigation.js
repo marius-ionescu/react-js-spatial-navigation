@@ -6,8 +6,9 @@
  *
  * Licensed under the MPL 2.0.
  */
+import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
-"use strict";
+("use strict");
 
 /************************/
 /* Global Configuration */
@@ -610,6 +611,7 @@ function focusElement(elem, sectionId, direction) {
     if (currentFocusedElement) {
       currentFocusedElement.blur();
     }
+    scrollIntoView(elem);
     elem.focus();
     focusChanged(elem, sectionId);
   };
@@ -652,7 +654,9 @@ function focusElement(elem, sectionId, direction) {
     _duringFocusChange = false;
     return false;
   }
+  scrollIntoView(elem);
   elem.focus();
+
   fireEvent(elem, "focused", focusProperties, false);
 
   _duringFocusChange = false;
@@ -987,6 +991,7 @@ function onBlur(evt) {
     if (!fireEvent(target, "willunfocus", unfocusProperties)) {
       _duringFocusChange = true;
       setTimeout(function () {
+        scrollIntoView(target);
         target.focus();
         _duringFocusChange = false;
       });

@@ -347,7 +347,7 @@ var _sectionCount = 0;
 var _defaultSectionId = "";
 var _lastSectionId = "";
 var _duringFocusChange = false;
-
+window._sections = _sections;
 /************/
 /* Polyfill */
 /************/
@@ -1174,7 +1174,8 @@ var JsSpatialNavigation = {
       sectionId = arguments[0];
       config = arguments[1];
       if (!_sections[sectionId]) {
-        throw new Error('Section "' + sectionId + "\" doesn't exist!");
+        console.error('Section "' + sectionId + "\" doesn't exist!");
+        return;
       }
     } else {
       return;
@@ -1214,7 +1215,8 @@ var JsSpatialNavigation = {
     }
 
     if (_sections[sectionId]) {
-      throw new Error('Section "' + sectionId + '" has already existed!');
+      console.error('Section "' + sectionId + '" has already existed!');
+      return false;
     }
 
     _sections[sectionId] = {};
@@ -1227,12 +1229,14 @@ var JsSpatialNavigation = {
 
   remove: function remove(sectionId) {
     if (!sectionId || typeof sectionId !== "string") {
-      throw new Error('Please assign the "sectionId"!');
+      console.error('Please assign the "sectionId"!');
+      return false;
     }
     if (_sections[sectionId]) {
       _sections[sectionId] = undefined;
       _sections = extend({}, _sections);
       _sectionCount--;
+      _idPool--;
       return true;
     }
     return false;
@@ -1353,7 +1357,8 @@ var JsSpatialNavigation = {
       if (_sections[sectionId]) {
         doMakeFocusable(_sections[sectionId]);
       } else {
-        throw new Error('Section "' + sectionId + "\" doesn't exist!");
+        console.error('Section "' + sectionId + "\" doesn't exist!");
+        return false;
       }
     } else {
       for (var id in _sections) {
@@ -1366,7 +1371,8 @@ var JsSpatialNavigation = {
     if (!sectionId) {
       _defaultSectionId = "";
     } else if (!_sections[sectionId]) {
-      throw new Error('Section "' + sectionId + "\" doesn't exist!");
+      console.error('Section "' + sectionId + "\" doesn't exist!");
+      return false;
     } else {
       _defaultSectionId = sectionId;
     }

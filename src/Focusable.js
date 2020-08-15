@@ -49,6 +49,7 @@ class Focusable extends Component {
       dataSNUp,
       dataSNLeft,
       dataSNRight,
+      disabled,
     } = this.props;
 
     return (
@@ -67,6 +68,7 @@ class Focusable extends Component {
           }
           return (
             <div
+              disabled={disabled}
               className={classNames.join(" ")}
               ref={(e) => (this.el = e)}
               tabIndex="-1"
@@ -99,6 +101,7 @@ Focusable.defaultProps = {
   onClickEnter: null,
   onKeyDown: null,
   onUnfocus: null,
+  disabled: false,
 };
 
 Focusable.propTypes = {
@@ -114,6 +117,7 @@ Focusable.propTypes = {
   onClickEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
   onUnfocus: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 export default Focusable;

@@ -1575,7 +1575,8 @@ var Focusable = function (_Component) {
           dataSNDown = _props.dataSNDown,
           dataSNUp = _props.dataSNUp,
           dataSNLeft = _props.dataSNLeft,
-          dataSNRight = _props.dataSNRight;
+          dataSNRight = _props.dataSNRight,
+          disabled = _props.disabled;
 
 
       return _react2.default.createElement(
@@ -1594,6 +1595,7 @@ var Focusable = function (_Component) {
           return _react2.default.createElement(
             "div",
             {
+              disabled: disabled,
               className: classNames.join(" "),
               ref: function ref(e) {
                 return _this2.el = e;
@@ -1631,7 +1633,8 @@ Focusable.defaultProps = {
   onFocus: null,
   onClickEnter: null,
   onKeyDown: null,
-  onUnfocus: null
+  onUnfocus: null,
+  disabled: false
 };
 
 Focusable.propTypes = {
@@ -1646,7 +1649,8 @@ Focusable.propTypes = {
   onFocus: _propTypes2.default.func,
   onClickEnter: _propTypes2.default.func,
   onKeyDown: _propTypes2.default.func,
-  onUnfocus: _propTypes2.default.func
+  onUnfocus: _propTypes2.default.func,
+  disabled: _propTypes2.default.bool
 };
 
 exports.default = Focusable;
